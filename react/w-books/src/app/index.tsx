@@ -1,9 +1,11 @@
 import React from 'react';
 
+import { SignUp } from '~components/SignUp';
+
 import '../scss/application.scss';
 
 function App() {
-  return <h1>React training WBooks</h1>;
+  return <SignUp />;
 }
 
 export default App;
