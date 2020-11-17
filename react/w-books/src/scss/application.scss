@@ -1,6 +1,6 @@
 @import './base/base';
 
-@import './base/settings';
+@import './base/colors';
 
 @import '~wolox-equalizer/equalizer';
 
@@ -9,6 +9,8 @@
 @import 'margins';
 
 @import 'components';
+
+@import './components/SignUp';
 
 // TODO: Edit this global styles
 

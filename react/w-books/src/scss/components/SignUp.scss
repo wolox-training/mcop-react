@@ -32,15 +32,15 @@
   text-align: left;
 }
 
-.signup-button,
-.signup-login {
+.signup-green-button,
+.signup-grey-button {
   background: $green;
   border-radius: 15px;
   color: $white;
   padding: 15px;
 }
 
-.signup-login {
+.signup-grey-button {
   background: $dark-grey;
   border: 2px solid $green;
   color: $green;

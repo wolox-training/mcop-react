@@ -1,41 +1,38 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 import logo from '../assets/logo_full_color.svg';
 
 export const SignUp = () => {
-  const [state, setState] = useState({
-    user: {
-      email: '',
-      password: '',
-      passwordConfirmation: '',
-      firstName: '',
-      lastName: '',
-      locale: 'en'
-    }
+  interface User {
+    email: string;
+    password: string;
+    passwordConfirmation: string;
+    firstName: string;
+    lastName: string;
+    locale: string;
+  }
+
+  // To remove the warning in the console I don't use the state (in the future I'll need it)
+  const [, setState] = useState({
+    email: '',
+    password: '',
+    passwordConfirmation: '',
+    firstName: '',
+    lastName: '',
+    locale: 'en'
   });
 
-  const { register, errors, handleSubmit } = useForm();
+  const { register, errors, handleSubmit } = useForm<User>();
 
-  const onSubmit = (user: any): void => {
-    console.log({
-      user
-    });
-
-    setState({
-      user
-    });
+  const onSubmit = (user: User): void => {
+    setState(user);
   };
 
-  const handleLogin = (e: any): void => {
+  const handleLogin = (e: React.MouseEvent<HTMLElement>): void => {
     e.preventDefault();
-    console.log('login');
+    // Login code here
   };
-
-  useEffect(() => {
-    console.log('state value: ');
-    console.log(state);
-  }, [state]);
 
   return (
     <div className="signup-container">
@@ -111,14 +108,14 @@ export const SignUp = () => {
         {errors.passwordConfirmation && (
           <span className="signup-text-danger">{errors.passwordConfirmation.message}</span>
         )}
-        <button type="submit" className="signup-button">
+        <button type="submit" className="signup-green-button">
           Sign Up
         </button>
       </form>
 
       <hr className="signup-separator" />
 
-      <button type="button" onClick={handleLogin} className="signup-login">
+      <button type="button" onClick={handleLogin} className="signup-grey-button">
         Login
       </button>
     </div>
