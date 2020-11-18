@@ -25,6 +25,14 @@
   justify-content: space-evenly;
   min-height: 400px;
   width: 90%;
+
+  &::after {
+    border-bottom: 2px solid $grey-font;
+    content: '';
+    display: inline-block;
+    margin-top: 45px;
+    width: 100%;
+  }
 }
 
 .signup-input {
@@ -33,6 +41,7 @@
 
 .signup-input-description {
   font-weight: 700;
+  padding: 5px 0;
   text-align: left;
 }
 
@@ -49,16 +58,6 @@
   border: 2px solid $green;
   color: $green;
   width: 90%;
-
-  &::before {
-    border-top: 2px solid $grey-font;
-    content: '';
-    display: inline-block;
-    margin: 0 20px;
-    position: absolute;
-    transform: translate(-50%, -45px);
-    width: 35%;
-  }
 }
 
 .signup-text-danger {
