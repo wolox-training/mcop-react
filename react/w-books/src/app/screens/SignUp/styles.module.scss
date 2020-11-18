@@ -49,11 +49,16 @@
   border: 2px solid $green;
   color: $green;
   width: 90%;
-}
 
-.signup-separator {
-  border-top: 2px solid $grey-font;
-  width: 90%;
+  &::before {
+    border-top: 2px solid $grey-font;
+    content: '';
+    display: inline-block;
+    margin: 0 20px;
+    position: absolute;
+    transform: translate(-50%, -45px);
+    width: 35%;
+  }
 }
 
 .signup-text-danger {

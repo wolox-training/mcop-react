@@ -1,6 +1,8 @@
 import React, { useState, useRef } from 'react';
-import { useForm } from 'react-hook-form';
 import i18next from 'i18next';
+import { useForm } from 'react-hook-form';
+
+import { validations } from '~utils/validations';
 
 import logo from '../../assets/logo_full_color.svg';
 
@@ -79,7 +81,7 @@ function SignUp() {
           ref={register({
             required: { value: true, message: i18next.t('SignUp:emailRequired') },
             pattern: {
-              value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+              value: validations.emailPattern,
               message: i18next.t('SignUp:invalidEmail')
             }
           })}
@@ -121,8 +123,6 @@ function SignUp() {
           {i18next.t('SignUp:signUp')}
         </button>
       </form>
-
-      <hr className={styles.signupSeparator} />
 
       <button type="button" onClick={handleLogin} className={styles.signupGreyButton}>
         {i18next.t('SignUp:login')}
