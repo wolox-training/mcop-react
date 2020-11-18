@@ -1,6 +1,5 @@
 import React from 'react';
-
-import { SignUp } from '~components/SignUp';
+import SignUp from '~screens/SignUp';
 
 import '../scss/application.scss';
 
