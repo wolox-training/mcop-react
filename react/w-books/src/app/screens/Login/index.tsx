@@ -26,7 +26,8 @@ function SignUp() {
 
   useEffect(() => {
     console.log(state);
-  }, [state]);
+    console.log(error);
+  }, [state, error]);
 
   return (
     <div className={styles.signupContainer}>
@@ -35,33 +36,33 @@ function SignUp() {
       <form onSubmit={handleSubmit(onSubmit)} className={styles.signupForm}>
         <InputField
           type="text"
-          label={i18next.t('SignUp:email')}
+          label={i18next.t('Login:email')}
           name={SIGNUP_FIELDS.email}
           inputRef={register({
-            required: { value: true, message: i18next.t('SignUp:emailRequired') },
+            required: { value: true, message: i18next.t('Login:incompleteField') },
             pattern: {
               value: validations.emailPattern,
-              message: i18next.t('SignUp:invalidEmail')
+              message: i18next.t('Login:invalidEmail')
             }
           })}
           error={errors.email}
         />
         <InputField
           type="text"
-          label={i18next.t('SignUp:password')}
+          label={i18next.t('Login:password')}
           name={SIGNUP_FIELDS.password}
           inputRef={register({
-            required: { value: true, message: i18next.t('SignUp:passwordRequired') }
+            required: { value: true, message: i18next.t('Login:incompleteField') }
           })}
           error={errors.password}
         />
         <button type="submit" className={styles.signupGreenButton}>
-          {i18next.t('SignUp:login')}
+          {i18next.t('Login:login')}
         </button>
       </form>
 
       <Link to="/sign_up" className={styles.signupGreyButton}>
-        {i18next.t('SignUp:signup')}
+        {i18next.t('Login:signup')}
       </Link>
     </div>
   );
