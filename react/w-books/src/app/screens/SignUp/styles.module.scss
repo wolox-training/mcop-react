@@ -35,16 +35,6 @@
   }
 }
 
-.signup-input {
-  padding: 15px;
-}
-
-.signup-input-description {
-  font-weight: 700;
-  padding: 5px 0;
-  text-align: left;
-}
-
 .signup-green-button,
 .signup-grey-button {
   background: $green;
@@ -58,9 +48,4 @@
   border: 2px solid $green;
   color: $green;
   width: 90%;
-}
-
-.signup-text-danger {
-  color: $red;
-  padding: 10px;
 }

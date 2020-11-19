@@ -3,10 +3,12 @@ import i18next from 'i18next';
 import { useForm } from 'react-hook-form';
 
 import { validations } from '~utils/validations';
+import InputField from '~components/InputField';
 
 import logo from '../../assets/logo_full_color.svg';
 
 import styles from './styles.module.scss';
+import { SIGNUP_FIELDS } from './constants';
 
 interface User {
   email: string;
@@ -44,81 +46,59 @@ function SignUp() {
     <div className={styles.signupContainer}>
       <img src={logo} alt="Logo" className={styles.signupLogo} />
       <form onSubmit={handleSubmit(onSubmit)} className={styles.signupForm}>
-        <label className={styles.signupInputDescription} htmlFor="firstName">
-          {i18next.t('SignUp:firstName')}
-        </label>
-        <input
+        <InputField
           type="text"
-          name="firstName"
-          className={styles.signupInput}
-          autoComplete="off"
-          ref={register({
+          label={i18next.t('SignUp:firstName')}
+          name={SIGNUP_FIELDS.firstName}
+          inputRef={register({
             required: { value: true, message: i18next.t('SignUp:nameRequired') }
           })}
+          error={errors.firstName}
         />
-        {errors.firstName && <span className={styles.signupTextDanger}>{errors.firstName.message}</span>}
-        <label className={styles.signupInputDescription} htmlFor="lastName">
-          {i18next.t('SignUp:lastName')}
-        </label>
-        <input
+        <InputField
           type="text"
-          name="lastName"
-          className={styles.signupInput}
-          autoComplete="off"
-          ref={register({
+          label={i18next.t('SignUp:lastName')}
+          name={SIGNUP_FIELDS.lastName}
+          inputRef={register({
             required: { value: true, message: i18next.t('SignUp:lastNameRequired') }
           })}
+          error={errors.lastName}
         />
-        {errors.lastName && <span className={styles.signupTextDanger}>{errors.lastName.message}</span>}
-        <label className={styles.signupInputDescription} htmlFor="email">
-          {i18next.t('SignUp:email')}
-        </label>
-        <input
+        <InputField
           type="text"
-          name="email"
-          className={styles.signupInput}
-          autoComplete="off"
-          ref={register({
+          label={i18next.t('SignUp:email')}
+          name={SIGNUP_FIELDS.email}
+          inputRef={register({
             required: { value: true, message: i18next.t('SignUp:emailRequired') },
             pattern: {
               value: validations.emailPattern,
               message: i18next.t('SignUp:invalidEmail')
             }
           })}
+          error={errors.email}
         />
-        {errors.email && <span className={styles.signupTextDanger}>{errors.email.message}</span>}
-        <label className={styles.signupInputDescription} htmlFor="password">
-          {i18next.t('SignUp:password')}
-        </label>
-        <input
+        <InputField
           type="password"
-          name="password"
-          className={styles.signupInput}
-          autoComplete="off"
-          ref={register({
+          label={i18next.t('SignUp:password')}
+          name={SIGNUP_FIELDS.password}
+          inputRef={register({
             required: { value: true, message: i18next.t('SignUp:passwordRequired') }
           })}
+          error={errors.password}
         />
-        {errors.password && <span className={styles.signupTextDanger}>{errors.password.message}</span>}
-        <label className={styles.signupInputDescription} htmlFor="passwordConfirmation">
-          {i18next.t('SignUp:passwordConfirmation')}
-        </label>
-        <input
+        <InputField
           type="password"
-          name="passwordConfirmation"
-          className={styles.signupInput}
-          autoComplete="off"
-          ref={register({
+          label={i18next.t('SignUp:passwordConfirmation')}
+          name={SIGNUP_FIELDS.passwordConfirmation}
+          inputRef={register({
             required: {
               value: true,
               message: i18next.t('SignUp:passwordConfirmationRequired')
             },
             validate: value => value === password.current || `${i18next.t('SignUp:passwordDoesNotMatch')}`
           })}
+          error={errors.passwordConfirmation}
         />
-        {errors.passwordConfirmation && (
-          <span className={styles.signupTextDanger}>{errors.passwordConfirmation.message}</span>
-        )}
         <button type="submit" className={styles.signupGreenButton}>
           {i18next.t('SignUp:signUp')}
         </button>
