@@ -21,6 +21,7 @@ function SignUp() {
 
   const [state, , error, sendRequest] = useLazyRequest({ request: login });
   const onSubmit = (user: User): void => {
+    console.log(user);
     sendRequest(user);
   };
 
@@ -48,7 +49,7 @@ function SignUp() {
           error={errors.email}
         />
         <InputField
-          type="text"
+          type="password"
           label={i18next.t('Login:password')}
           name={SIGNUP_FIELDS.password}
           inputRef={register({
