@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import i18next from 'i18next';
 import { useForm } from 'react-hook-form';
+import { Link } from 'react-router-dom';
 
 import { validations } from '~utils/validations';
 import InputField from '~components/InputField';
@@ -21,11 +22,6 @@ function SignUp() {
   const [, , error, sendRequest] = useLazyRequest({ request: signUp });
   const onSubmit = (user: User): void => {
     sendRequest(user);
-  };
-
-  const handleLogin = (e: React.MouseEvent<HTMLElement>): void => {
-    e.preventDefault();
-    // Login code here
   };
 
   return (
@@ -91,9 +87,9 @@ function SignUp() {
         </button>
       </form>
 
-      <button type="button" onClick={handleLogin} className={styles.signupGreyButton}>
+      <Link to="/" className={styles.signupGreyButton}>
         {i18next.t('SignUp:login')}
-      </button>
+      </Link>
     </div>
   );
 }

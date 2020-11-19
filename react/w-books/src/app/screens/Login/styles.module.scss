@@ -1,0 +1,60 @@
+@import '../../../scss/base/base';
+
+@import '../../../scss/base/colors';
+
+.signup-container {
+  align-items: center;
+  background: $dark-grey;
+  border-top: 4px solid $blue;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  margin: 0 auto;
+  min-height: 700px;
+  text-align: center;
+  width: 40%;
+}
+
+.signup-logo {
+  width: 200px;
+}
+
+.signup-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  min-height: 400px;
+  width: 90%;
+
+  &::after {
+    border-bottom: 2px solid $grey-font;
+    content: '';
+    display: inline-block;
+    margin-top: 45px;
+    width: 100%;
+  }
+}
+
+.signup-green-button,
+.signup-grey-button {
+  background: $green;
+  border-radius: 15px;
+  color: $white;
+  padding: 15px;
+}
+
+.signup-grey-button {
+  background: $dark-grey;
+  border: 2px solid $green;
+  color: $green;
+  width: 90%;
+}
+
+.signup-request-error {
+  background: $red;
+  border-radius: 5px;
+  color: $white;
+  padding: 10px;
+  text-align: center;
+  width: 90%;
+}
