@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import i18next from 'i18next';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
@@ -16,24 +16,25 @@ import { SIGNUP_FIELDS } from './constants';
 
 function SignUp() {
   const { register, errors, handleSubmit, watch } = useForm<User>();
+  const [wrongCredentials, setWrongCredentials] = useState('');
   const password = useRef({});
   password.current = watch('password', '');
 
   const [state, , error, sendRequest] = useLazyRequest({ request: login });
   const onSubmit = (user: User): void => {
-    console.log(user);
     sendRequest(user);
   };
 
   useEffect(() => {
-    console.log(state);
-    console.log(error);
+    if (error) {
+      setWrongCredentials(i18next.t('Login:wrongCredentials'));
+    }
   }, [state, error]);
 
   return (
     <div className={styles.signupContainer}>
       <img src={logo} alt="Logo" className={styles.signupLogo} />
-      {error && <span className={styles.signupRequestError}>{error.problem}</span>}
+      {wrongCredentials && <span className={styles.signupRequestError}>{wrongCredentials}</span>}
       <form onSubmit={handleSubmit(onSubmit)} className={styles.signupForm}>
         <InputField
           type="text"

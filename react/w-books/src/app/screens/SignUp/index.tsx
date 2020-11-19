@@ -21,6 +21,7 @@ function SignUp() {
 
   const [, , error, sendRequest] = useLazyRequest({ request: signUp });
   const onSubmit = (user: User): void => {
+    user.locale = 'en';
     sendRequest(user);
   };
 

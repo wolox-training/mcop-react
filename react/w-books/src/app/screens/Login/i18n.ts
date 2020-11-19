@@ -7,5 +7,6 @@ i18next.addResources('es', 'Login', {
   signup: 'Sign Up',
   login: 'Login',
   incompleteField: 'Hay campos incompletos',
-  invalidEmail: 'El formato de mail no es correcto'
+  invalidEmail: 'El formato de mail no es correcto',
+  wrongCredentials: 'Credenciales incorrectas'
 });
