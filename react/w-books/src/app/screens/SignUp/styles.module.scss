@@ -49,3 +49,12 @@
   color: $green;
   width: 90%;
 }
+
+.signup-request-error {
+  background: $red;
+  border-radius: 5px;
+  color: $white;
+  padding: 10px;
+  text-align: center;
+  width: 90%;
+}

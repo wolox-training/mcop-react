@@ -1,40 +1,26 @@
-import React, { useState, useRef } from 'react';
+import React, { useRef } from 'react';
 import i18next from 'i18next';
 import { useForm } from 'react-hook-form';
 
 import { validations } from '~utils/validations';
 import InputField from '~components/InputField';
+import { signUp } from '~services/userService';
 
 import logo from '../../assets/logo_full_color.svg';
+import { useLazyRequest } from '../../hooks/useRequest';
+import { User } from '../../../interfaces/user.interface';
 
 import styles from './styles.module.scss';
 import { SIGNUP_FIELDS } from './constants';
 
-interface User {
-  email: string;
-  password: string;
-  passwordConfirmation: string;
-  firstName: string;
-  lastName: string;
-  locale: string;
-}
 function SignUp() {
-  // To remove the warning in the console I don't use the state (in the future I'll need it)
-  const [, setState] = useState({
-    email: '',
-    password: '',
-    passwordConfirmation: '',
-    firstName: '',
-    lastName: '',
-    locale: 'en'
-  });
-
   const { register, errors, handleSubmit, watch } = useForm<User>();
   const password = useRef({});
   password.current = watch('password', '');
 
+  const [, , error, sendRequest] = useLazyRequest({ request: signUp });
   const onSubmit = (user: User): void => {
-    setState(user);
+    sendRequest(user);
   };
 
   const handleLogin = (e: React.MouseEvent<HTMLElement>): void => {
@@ -45,6 +31,7 @@ function SignUp() {
   return (
     <div className={styles.signupContainer}>
       <img src={logo} alt="Logo" className={styles.signupLogo} />
+      {error && <span className={styles.signupRequestError}>{error.problem}</span>}
       <form onSubmit={handleSubmit(onSubmit)} className={styles.signupForm}>
         <InputField
           type="text"
@@ -53,7 +40,7 @@ function SignUp() {
           inputRef={register({
             required: { value: true, message: i18next.t('SignUp:nameRequired') }
           })}
-          error={errors.firstName}
+          error={errors.first_name}
         />
         <InputField
           type="text"
@@ -62,7 +49,7 @@ function SignUp() {
           inputRef={register({
             required: { value: true, message: i18next.t('SignUp:lastNameRequired') }
           })}
-          error={errors.lastName}
+          error={errors.last_name}
         />
         <InputField
           type="text"
@@ -97,10 +84,10 @@ function SignUp() {
             },
             validate: value => value === password.current || `${i18next.t('SignUp:passwordDoesNotMatch')}`
           })}
-          error={errors.passwordConfirmation}
+          error={errors.password_confirmation}
         />
         <button type="submit" className={styles.signupGreenButton}>
-          {i18next.t('SignUp:signUp')}
+          {i18next.t('SignUp:signup')}
         </button>
       </form>
 
