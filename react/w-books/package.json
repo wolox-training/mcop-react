@@ -8,6 +8,7 @@
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
     "apisauce": "^1.1.1",
+    "axios": "^0.21.0",
     "babel-plugin-module-resolver": "^3.2.0",
     "cerealizr": "^1.0.1-alpha",
     "connected-react-router": "^6.6.1",
