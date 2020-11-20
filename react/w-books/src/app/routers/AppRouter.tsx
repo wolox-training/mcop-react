@@ -5,6 +5,8 @@ import Home from '~screens/Home';
 import Login from '~screens/Login';
 import SignUp from '~screens/SignUp';
 
+import BookDetail from '../components/BookDetail/index';
+
 export const AppRouter = () => (
   <Router>
     <div>
@@ -14,6 +16,9 @@ export const AppRouter = () => (
         </Route>
         <Route path="/home">
           <Home />
+        </Route>
+        <Route path="/books/:id">
+          <BookDetail />
         </Route>
         <Route path="/">
           <Login />
