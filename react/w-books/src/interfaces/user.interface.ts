@@ -1,3 +1,5 @@
+import { string } from "prop-types";
+
 export interface User {
   email: string;
   password: string;

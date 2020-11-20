@@ -36,11 +36,17 @@
 }
 
 .signup-green-button,
+.signup-green-button-loading,
 .signup-grey-button {
   background: $green;
   border-radius: 15px;
   color: $white;
+  margin-top: 20px;
   padding: 15px;
+}
+
+.signup-green-button-loading {
+  background: lighten($color: $green, $amount: 30);
 }
 
 .signup-grey-button {

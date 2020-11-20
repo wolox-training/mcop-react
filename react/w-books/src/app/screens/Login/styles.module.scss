@@ -36,10 +36,12 @@
 }
 
 .signup-green-button,
-.signup-grey-button {
+.signup-grey-button,
+.login-loading-button {
   background: $green;
   border-radius: 15px;
   color: $white;
+  margin-top: 20px;
   padding: 15px;
 }
 
@@ -48,6 +50,11 @@
   border: 2px solid $green;
   color: $green;
   width: 90%;
+}
+
+.login-loading-button {
+  background-color: lighten($color: $green, $amount: 10);
+  cursor: disabled;
 }
 
 .signup-request-error {

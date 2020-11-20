@@ -1,10 +1,11 @@
 import React from 'react';
 
+import BooksApp from '~components/BooksApp';
+
 import '../scss/application.scss';
-import { AppRouter } from './routers/AppRouter';
 
 function App() {
-  return <AppRouter />;
+  return <BooksApp />;
 }
 
 export default App;
