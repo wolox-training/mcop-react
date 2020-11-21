@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import i18next from 'i18next';
 import { useForm } from 'react-hook-form';
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import { validations } from '~utils/validations';
 import InputField from '~components/InputField';
@@ -16,7 +16,6 @@ import styles from './styles.module.scss';
 import { SIGNUP_FIELDS } from './constants';
 
 function Login() {
-  const history = useHistory();
   const [loggedUser, setLoggedUser] = useState('');
   const { register, errors, handleSubmit, watch } = useForm<User>();
   const [wrongCredentials, setWrongCredentials] = useState('');
@@ -34,9 +33,9 @@ function Login() {
       setWrongCredentials(i18next.t('Login:wrongCredentials'));
     } else if (response) {
       saveInLocalStorage(response);
-      history.replace('/home');
+      window.location.href = '/home';
     }
-  }, [response, error, history, loggedUser]);
+  }, [response, error, loggedUser]);
 
   return (
     <div className={styles.signupContainer}>
