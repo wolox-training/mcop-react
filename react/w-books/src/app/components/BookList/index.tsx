@@ -1,19 +1,25 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 
+import { Book } from '../../../interfaces/book.interface';
+
 import styles from './styles.module.scss';
 
-function BookList(books: any) {
+interface BookList {
+  books: [Book];
+}
+
+function BookList(books: BookList) {
   const history = useHistory();
-  const iterateBooks = books.books;
+  const bookList = books.books;
 
   const handleBookDetail = (id: string) => {
     history.push(`/books/${id}`);
   };
   return (
     <div className={styles.container}>
-      {iterateBooks &&
-        iterateBooks.map((book: any) => (
+      {bookList &&
+        bookList.map((book: Book) => (
           <div
             className={`${styles.item}`}
             key={book.id}

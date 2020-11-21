@@ -3,19 +3,9 @@ import { Link, useHistory } from 'react-router-dom';
 import axios from 'axios';
 import i18next from 'i18next';
 
-import styles from './styles.module.scss';
+import { Book } from '../../../interfaces/book.interface';
 
-interface Book {
-  id: number | '';
-  author: string | '';
-  title: string | '';
-  image_url: string | '';
-  editor: string | '';
-  year: string | '';
-  genre: string | '';
-  // eslint-disable-next-line
-  current_rent: string | '';
-}
+import styles from './styles.module.scss';
 
 const initialState: Book = {
   id: '',
