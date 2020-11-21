@@ -23,7 +23,7 @@ function Login() {
   const password = useRef({});
   password.current = watch('password', '');
 
-  const [state, loading, error, sendRequest] = useLazyRequest({ request: login });
+  const [response, loading, error, sendRequest] = useLazyRequest({ request: login });
   const onSubmit = (user: User): void => {
     setLoggedUser(user.email);
     sendRequest(user);
@@ -32,11 +32,11 @@ function Login() {
   useEffect(() => {
     if (error) {
       setWrongCredentials(i18next.t('Login:wrongCredentials'));
-    } else if (state) {
-      saveInLocalStorage(state);
+    } else if (response) {
+      saveInLocalStorage(response);
       history.replace('/home');
     }
-  }, [state, error, history, loggedUser]);
+  }, [response, error, history, loggedUser]);
 
   return (
     <div className={styles.signupContainer}>
