@@ -6,6 +6,8 @@ import BookList from '~components/BookList';
 import NavBar from '~components/NavBar';
 // import { getBooks } from '~services/booksService';
 
+import { BOOKS_URL } from '~constants/api';
+
 import styles from './styles.module.scss';
 
 function Home() {
@@ -16,7 +18,7 @@ function Home() {
       uid: localStorage.getItem('uid'),
       client: localStorage.getItem('client')
     };
-    axios.get('https://books-training-rails.herokuapp.com/api/v1/books', { params: headers }).then(r => {
+    axios.get(BOOKS_URL, { params: headers }).then(r => {
       setBooks(r.data.page);
     });
   }, []);
