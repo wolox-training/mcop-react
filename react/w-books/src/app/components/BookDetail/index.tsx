@@ -1,40 +1,82 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link, useHistory } from 'react-router-dom';
+import axios from 'axios';
+import i18next from 'i18next';
 
 import styles from './styles.module.scss';
 
+interface Book {
+  id: number | '';
+  author: string | '';
+  title: string | '';
+  image_url: string | '';
+  editor: string | '';
+  year: string | '';
+  genre: string | '';
+  // eslint-disable-next-line
+  current_rent: string | '';
+}
+
+const initialState: Book = {
+  id: '',
+  author: '',
+  title: '',
+  // eslint-disable-next-line
+  image_url: '',
+  editor: '',
+  year: '',
+  genre: '',
+  // eslint-disable-next-line
+  current_rent: ''
+};
+
 function BookDetail() {
+  const history = useHistory();
+  const [book, setBook] = useState(initialState);
+  useEffect(() => {
+    const { pathname } = history.location;
+    const url = `${process.env.REACT_APP_API_BASE_URL}${pathname}`;
+
+    const headers = {
+      'access-token': localStorage.getItem('access-token'),
+      uid: localStorage.getItem('uid'),
+      client: localStorage.getItem('client')
+    };
+    axios.get(url, { params: headers }).then(r => {
+      setBook(r.data);
+    });
+  }, [history.location]);
+
   return (
     <div className={styles.homeContainer}>
       <div className={styles.backButton}>
         <Link to="/home">
           <div className={styles.arrow}>
             <span className={styles.chevronLeft}>&lt;</span>
-            <div>Atrás</div>
+            <div>{i18next.t('BookDetail:goBack')}</div>
           </div>
         </Link>
       </div>
-      <div className={styles.bookDetailContainer}>
-        <img
-          src="https://d1w7fb2mkkr3kw.cloudfront.net/assets/images/book/lrg/9780/8118/9780811870191.jpg"
-          alt="Image"
-          className={styles.bookImage}
-        />
-        <div className={styles.descriptionContainer}>
-          <div className={styles.bookTitle}>
-            Título del libro <div className={styles.genre}>(género)</div>
-          </div>
-          <div className={styles.bookInformation}>
-            <div className={styles.bold}>Autor del libro: </div> Nombre del autor del libro
-          </div>
-          <div className={styles.bookInformation}>
-            <div className={styles.bold}>Editorial: </div> Nombre de la editorial
-          </div>
-          <div className={styles.bookInformation}>
-            <div className={styles.bold}>Año de publicación: </div> Año de publicación
+
+      {book.id && (
+        <div className={styles.bookDetailContainer}>
+          <img src={book.image_url} alt={book.title} className={styles.bookImage} />
+          <div className={styles.descriptionContainer}>
+            <div className={styles.bookTitle}>
+              {book.title} <div className={styles.genre}>({book.genre})</div>
+            </div>
+            <div className={styles.bookInformation}>
+              <div className={styles.bold}>{i18next.t('BookDetail:author')} </div> {book.author}
+            </div>
+            <div className={styles.bookInformation}>
+              <div className={styles.bold}>{i18next.t('BookDetail:editor')} </div> {book.editor}
+            </div>
+            <div className={styles.bookInformation}>
+              <div className={styles.bold}>{i18next.t('BookDetail:year')} </div> {book.year}
+            </div>
           </div>
         </div>
-      </div>
+      )}
     </div>
   );
 }

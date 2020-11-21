@@ -1,11 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
-// import { useRequest } from 'app/hooks/useRequest';
 import BookList from '~components/BookList';
 import NavBar from '~components/NavBar';
-// import { getBooks } from '~services/booksService';
-
 import { BOOKS_URL } from '~constants/api';
 
 import styles from './styles.module.scss';
