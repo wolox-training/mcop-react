@@ -3,11 +3,10 @@ import i18next from 'i18next';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 
-import { validations } from '~utils/validations';
-import InputField from '~components/InputField';
-import { login } from '~services/userService';
-import { saveInLocalStorage } from '~utils/session';
-
+import { validations } from '../../../utils/validations';
+import InputField from '../../components/InputField';
+import { login } from '../../../services/userService';
+import { saveInLocalStorage } from '../../../utils/session';
 import logo from '../../assets/logo_full_color.svg';
 import { useLazyRequest } from '../../hooks/useRequest';
 import { User } from '../../../interfaces/user.interface';

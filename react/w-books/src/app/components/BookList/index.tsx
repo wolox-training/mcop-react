@@ -6,7 +6,7 @@ import { Book } from '../../../interfaces/book.interface';
 import styles from './styles.module.scss';
 
 interface BookList {
-  books: [Book];
+  books: [Book] | undefined;
 }
 
 function BookList(books: BookList) {

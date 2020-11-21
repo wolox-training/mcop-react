@@ -1,12 +1,12 @@
 import React, { useEffect, useRef } from 'react';
 import i18next from 'i18next';
+/* istanbul ignore next */
 import { useForm } from 'react-hook-form';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
-import { validations } from '~utils/validations';
-import InputField from '~components/InputField';
-import { signUp } from '~services/userService';
-
+import { validations } from '../../../utils/validations';
+import InputField from '../../components/InputField';
+import { signUp } from '../../../services/userService';
 import logo from '../../assets/logo_full_color.svg';
 import { useLazyRequest } from '../../hooks/useRequest';
 import { User } from '../../../interfaces/user.interface';
@@ -31,6 +31,11 @@ function SignUp() {
       history.replace('/');
     }
   }, [history, state]);
+
+  const goToLogin = (e: React.MouseEvent<HTMLElement>) => {
+    e.preventDefault();
+    history.push('/');
+  };
 
   return (
     <div className={styles.signupContainer}>
@@ -91,6 +96,7 @@ function SignUp() {
           error={errors.password_confirmation}
         />
         <button
+          data-testid="signUpButton"
           type="submit"
           className={loading ? styles.signupGreenButtonLoading : styles.signupGreenButton}
           disabled={loading}
@@ -98,10 +104,9 @@ function SignUp() {
           {i18next.t('SignUp:signup')}
         </button>
       </form>
-
-      <Link to="/" className={styles.signupGreyButton}>
+      <button type="button" onClick={goToLogin} className={styles.signupGreyButton}>
         {i18next.t('SignUp:login')}
-      </Link>
+      </button>
     </div>
   );
 }

@@ -1,10 +1,9 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch } from 'react-router-dom';
 
-import Home from '~screens/Home';
-import Login from '~screens/Login';
-import SignUp from '~screens/SignUp';
-
+import Home from '../screens/Home';
+import Login from '../screens/Login';
+import SignUp from '../screens/SignUp';
 import BookDetail from '../components/BookDetail/index';
 
 import PrivateRoute from './PrivateRoute';

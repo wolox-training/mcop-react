@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
-import BookList from '~components/BookList';
-import NavBar from '~components/NavBar';
-import { BOOKS_URL } from '~constants/api';
+import BookList from '../../components/BookList';
+import NavBar from '../../components/NavBar';
+import { BOOKS_URL } from '../../../constants/api';
 
 import styles from './styles.module.scss';
 
