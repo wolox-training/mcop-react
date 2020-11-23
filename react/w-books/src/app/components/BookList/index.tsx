@@ -29,7 +29,7 @@ function BookList(books: BookList) {
             }}
           >
             <div className={styles.bookContainer}>
-              <img className={styles.bookImage} src={book.image_url} alt={book.image_url} />
+              <img className={styles.bookImage} src={book.imageUrl} alt={book.imageUrl} />
               <div className={styles.bookTitle}>{book.title}</div>
               <p>{book.author}</p>
             </div>

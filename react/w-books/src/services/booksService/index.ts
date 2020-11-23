@@ -1,3 +1,20 @@
 import api from '../../config/api';
 
-export const getBooks = () => api.get('/books');
+const accessToken = localStorage.getItem('access-token');
+const client = localStorage.getItem('client');
+const uid = localStorage.getItem('uid');
+
+if (accessToken && client && uid) {
+  api.setHeader('access-token', accessToken);
+  api.setHeader('client', client);
+  api.setHeader('uid', uid);
+}
+export const getBooks = async () => {
+  const data: any = await (await api.get('/books')).data;
+  return data.page;
+};
+
+export const getBookById = async (id: string) => {
+  const data: any = await (await api.get(`/books/${id}`)).data;
+  return data;
+};

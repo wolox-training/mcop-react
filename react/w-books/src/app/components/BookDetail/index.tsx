@@ -1,40 +1,35 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import axios from 'axios';
 import i18next from 'i18next';
 
-import { Book } from '../../../interfaces/book.interface';
+import { getBookById } from '~services/booksService';
 
 import styles from './styles.module.scss';
 
-const initialState: Book = {
+const initialState = {
   id: '',
   author: '',
   title: '',
-  // eslint-disable-next-line
-  image_url: '',
+  imageUrl: '',
   editor: '',
   year: '',
   genre: '',
-  // eslint-disable-next-line
-  current_rent: ''
+  currentRent: ''
 };
 
 function BookDetail() {
   const history = useHistory();
   const [book, setBook] = useState(initialState);
-  useEffect(() => {
-    const { pathname } = history.location;
-    const url = `${process.env.REACT_APP_API_BASE_URL}${pathname}`;
 
-    const headers = {
-      'access-token': localStorage.getItem('access-token'),
-      uid: localStorage.getItem('uid'),
-      client: localStorage.getItem('client')
-    };
-    axios.get(url, { params: headers }).then(r => {
-      setBook(r.data);
-    });
+  useEffect(() => {
+    async function fetchBook() {
+      const { pathname } = history.location;
+      const bookId = pathname.split('/')[pathname.split('/').length - 1];
+      const resp = await getBookById(bookId);
+      setBook(resp);
+    }
+
+    fetchBook();
   }, [history.location]);
 
   return (
@@ -50,7 +45,7 @@ function BookDetail() {
 
       {book.id && (
         <div className={styles.bookDetailContainer}>
-          <img src={book.image_url} alt={book.title} className={styles.bookImage} />
+          <img src={book.imageUrl} alt={book.title} className={styles.bookImage} />
           <div className={styles.descriptionContainer}>
             <div className={styles.bookTitle}>
               {book.title} <div className={styles.genre}>({book.genre})</div>

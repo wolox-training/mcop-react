@@ -1,28 +1,27 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+
+import { getBooks } from '~services/booksService';
 
 import BookList from '../../components/BookList';
 import NavBar from '../../components/NavBar';
-import { BOOKS_URL } from '../../../constants/api';
 
 import styles from './styles.module.scss';
 
 function Home() {
   const [books, setBooks] = useState();
+  const fetchBooks = async () => {
+    const resp = await getBooks();
+    setBooks(resp);
+  };
+
   useEffect(() => {
-    const headers = {
-      'access-token': localStorage.getItem('access-token'),
-      uid: localStorage.getItem('uid'),
-      client: localStorage.getItem('client')
-    };
-    axios.get(BOOKS_URL, { params: headers }).then(r => {
-      setBooks(r.data.page);
-    });
+    fetchBooks();
   }, []);
+
   return (
     <div className={styles.homeContainer}>
       <NavBar />
-      {books !== null && <BookList books={books} />}
+      {books && <BookList books={books} />}
     </div>
   );
 }
