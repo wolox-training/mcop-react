@@ -6,6 +6,7 @@ import { Link, useHistory } from 'react-router-dom';
 import { validations } from '~utils/validations';
 import InputField from '~components/InputField';
 import { login } from '~services/userService';
+import PATHS from '~constants/paths';
 import { saveInLocalStorage } from '~utils/session';
 
 import logo from '../../assets/logo_full_color.svg';
@@ -74,7 +75,7 @@ function Login() {
         </button>
       </form>
 
-      <Link to="/sign_up" className={styles.signupGreyButton}>
+      <Link to={PATHS.signUp} className={styles.signupGreyButton}>
         {i18next.t('Login:signup')}
       </Link>
     </div>

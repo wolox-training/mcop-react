@@ -1,24 +1,27 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import Home from '~screens/Home';
 
+import PATHS from '~constants/paths';
+import Home from '~screens/Home';
 import Login from '~screens/Login';
 import SignUp from '~screens/SignUp';
 
-export const AppRouter = () => (
-  <Router>
-    <div>
+function AppRouter() {
+  return (
+    <Router>
       <Switch>
-        <Route path="/sign_up">
+        <Route path={PATHS.signUp}>
           <SignUp />
         </Route>
-        <Route path="/home">
+        <Route path={PATHS.home}>
           <Home />
         </Route>
-        <Route path="/">
+        <Route path={PATHS.root}>
           <Login />
         </Route>
       </Switch>
-    </div>
-  </Router>
-);
+    </Router>
+  );
+}
+
+export default AppRouter;
