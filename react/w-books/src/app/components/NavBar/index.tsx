@@ -16,7 +16,6 @@ function NavBar() {
   return (
     <div className={styles.navbarContainer}>
       <img src={logo} alt="Logo" className={styles.logo} />
-
       <button type="button" className={styles.nabvarLogout} onClick={handleLogout}>
         {i18next.t('Navbar:login')}
       </button>

@@ -68,7 +68,7 @@ function Login() {
         />
         <button
           type="submit"
-          className={loading ? styles.loginLoadingButton : styles.signupGreenButton}
+          className={styles.signupGreenButton}
           disabled={loading}
         >
           {i18next.t('Login:login')}
