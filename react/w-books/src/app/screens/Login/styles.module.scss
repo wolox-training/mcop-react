@@ -5,49 +5,54 @@
 .signup-container {
   align-items: center;
   background: $dark-grey;
-  border-top: 4px solid $blue;
+  border-top: 8px solid $blue;
   display: flex;
   flex-direction: column;
+  height: 400px;
   justify-content: space-evenly;
   margin: 0 auto;
-  min-height: 700px;
   text-align: center;
-  width: 40%;
+  width: 300px;
 }
 
 .signup-logo {
-  width: 200px;
+  height: 70px;
+  width: 212.42px;
 }
 
 .signup-form {
+  align-items: flex-start;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-  min-height: 400px;
-  width: 90%;
 
   &::after {
-    border-bottom: 2px solid $grey-font;
+    border-bottom: 2px solid #717171;
     content: '';
     display: inline-block;
-    margin-top: 45px;
-    width: 100%;
+    padding: 3%;
+    width: 233px;
   }
 }
 
 .signup-green-button,
 .signup-grey-button {
   background: $green;
-  border-radius: 15px;
+  border-radius: 5px;
   color: $white;
-  padding: 15px;
+  width: 252px;
+  height: 32px;
+}
+
+.signup-green-button {
+  margin-top: 20px;
 }
 
 .signup-grey-button {
   background: $dark-grey;
   border: 2px solid $green;
   color: $green;
-  width: 90%;
+  padding: 5px;
 }
 
 .signup-request-error {
@@ -57,4 +62,8 @@
   padding: 10px;
   text-align: center;
   width: 90%;
+}
+
+.signup-input-description {
+  width: 100%;
 }
