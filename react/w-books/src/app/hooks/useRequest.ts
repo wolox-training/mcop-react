@@ -5,7 +5,7 @@ import { ApiErrorResponse, ApiOkResponse, PROBLEM_CODE, ApiResponse } from 'apis
 type Nullable<T> = T | null;
 export type Error<E> = { problem: PROBLEM_CODE; errorData?: E };
 type Request<P, D, E> = (params: P) => Promise<ApiResponse<D, E>>;
-type Success<D> = (data?: D) => void;
+type Success<D> = (data?: any) => void;
 type Failure<E> = (error: Error<E>) => void;
 type PostFetch<D, E> = (response: ApiOkResponse<D> | ApiErrorResponse<E>) => void;
 interface AsyncRequestHookParams<P, D, E> {
@@ -38,7 +38,7 @@ const executeAsyncRequest = async <P, D, E>({
   onPrefetch();
   const response = await request(values);
   if (response.ok) {
-    onSuccess(response.data);
+    onSuccess(response);
   } else {
     onError({ problem: response.problem, errorData: response.data });
   }
@@ -119,4 +119,5 @@ export const useRequest = <P, D, E>(
     dependencies
   );
   return [state, loading, error, sendRequest];
+// eslint-disable-next-line
 };

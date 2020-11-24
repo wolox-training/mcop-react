@@ -28,7 +28,6 @@ function SignUp() {
 
   useEffect(() => {
     if (state) {
-      console.log(state);
       history.replace('/');
     }
   }, [history, state]);
