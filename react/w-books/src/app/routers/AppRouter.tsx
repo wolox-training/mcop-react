@@ -9,12 +9,8 @@ function AppRouter() {
   return (
     <Router>
       <Switch>
-        <Route path={PATHS.signUp}>
-          <SignUp />
-        </Route>
-        <Route path={PATHS.root}>
-          <Login />
-        </Route>
+        <Route path={PATHS.signUp} component={SignUp} exact />
+        <Route path={PATHS.root} component={Login} exact />
       </Switch>
     </Router>
   );

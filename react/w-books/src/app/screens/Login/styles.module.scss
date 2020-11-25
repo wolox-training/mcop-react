@@ -10,14 +10,13 @@
   flex-direction: column;
   height: 400px;
   justify-content: space-evenly;
-  margin: 0 auto;
   text-align: center;
   width: 300px;
 }
 
 .signup-logo {
   height: 70px;
-  width: 212.42px;
+  width: 210px;
 }
 
 .signup-form {
@@ -27,10 +26,10 @@
   justify-content: space-evenly;
 
   &::after {
-    border-bottom: 2px solid #717171;
+    border-bottom: 2px solid $grey-font;
     content: '';
     display: inline-block;
-    padding: 3%;
+    padding: 8px;
     width: 233px;
   }
 }

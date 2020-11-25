@@ -33,40 +33,42 @@ function SignUp() {
   }, [state, error]);
 
   return (
-    <div className={styles.signupContainer}>
-      <img src={logo} alt="Logo" className={styles.signupLogo} />
-      {wrongCredentials && <span className={styles.signupRequestError}>{wrongCredentials}</span>}
-      <form onSubmit={handleSubmit(onSubmit)} className={styles.signupForm}>
-        <InputField
-          type="text"
-          label={i18next.t('Login:email')}
-          name={SIGNUP_FIELDS.email}
-          inputRef={register({
-            required: { value: true, message: i18next.t('Login:incompleteField') },
-            pattern: {
-              value: validations.emailPattern,
-              message: i18next.t('Login:invalidEmail')
-            }
-          })}
-          error={errors.email}
-        />
-        <InputField
-          type="password"
-          label={i18next.t('Login:password')}
-          name={SIGNUP_FIELDS.password}
-          inputRef={register({
-            required: { value: true, message: i18next.t('Login:incompleteField') }
-          })}
-          error={errors.password}
-        />
-        <button type="submit" className={styles.signupGreenButton}>
-          {i18next.t('Login:login')}
-        </button>
-      </form>
+    <div className="row center middle">
+      <div className={styles.signupContainer}>
+        <img src={logo} alt="Logo" className={styles.signupLogo} />
+        {wrongCredentials && <span className={styles.signupRequestError}>{wrongCredentials}</span>}
+        <form onSubmit={handleSubmit(onSubmit)} className={styles.signupForm}>
+          <InputField
+            type="text"
+            label={i18next.t('Login:email')}
+            name={SIGNUP_FIELDS.email}
+            inputRef={register({
+              required: { value: true, message: i18next.t('Login:incompleteField') },
+              pattern: {
+                value: validations.emailPattern,
+                message: i18next.t('Login:invalidEmail')
+              }
+            })}
+            error={errors.email}
+          />
+          <InputField
+            type="password"
+            label={i18next.t('Login:password')}
+            name={SIGNUP_FIELDS.password}
+            inputRef={register({
+              required: { value: true, message: i18next.t('Login:incompleteField') }
+            })}
+            error={errors.password}
+          />
+          <button type="submit" className={styles.signupGreenButton}>
+            {i18next.t('Login:login')}
+          </button>
+        </form>
 
-      <Link to={PATHS.signUp} className={styles.signupGreyButton}>
-        {i18next.t('Login:signup')}
-      </Link>
+        <Link to={PATHS.signUp} className={styles.signupGreyButton}>
+          {i18next.t('Login:signup')}
+        </Link>
+      </div>
     </div>
   );
 }
