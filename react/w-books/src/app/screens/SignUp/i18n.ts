@@ -6,7 +6,7 @@ i18next.addResources('es', 'SignUp', {
   email: 'Email',
   password: 'Password',
   passwordConfirmation: 'Confirmación de Password',
-  signUp: 'Sign Up',
+  signup: 'Sign Up',
   login: 'Login',
   nameRequired: 'Nombre obligatorio',
   lastNameRequired: 'Apellido obligatorio',

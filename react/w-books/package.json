@@ -9,6 +9,7 @@
     "@testing-library/user-event": "^7.1.2",
     "apisauce": "^1.1.1",
     "babel-plugin-module-resolver": "^3.2.0",
+    "cerealizr": "^1.0.1-alpha",
     "connected-react-router": "^6.6.1",
     "history": "^4.10.1",
     "i18next": "^13.1.5",

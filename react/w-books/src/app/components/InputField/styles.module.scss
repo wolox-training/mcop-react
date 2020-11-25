@@ -3,6 +3,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
 .signup-input {
+  border-radius: 5px;
   height: 32px;
   width: 252px;
 }
@@ -10,8 +11,8 @@
 .signup-input-description {
   color: $black;
   font-family: Roboto, sans-serif;
-  font-size: 12px;
-  padding: 10px 0;
+  font-size: 16px;
+  padding: 15px 0;
   text-align: left;
   width: 94%;
 }
