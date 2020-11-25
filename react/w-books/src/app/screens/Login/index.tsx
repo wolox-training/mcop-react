@@ -15,7 +15,7 @@ import { User } from '../../../interfaces/user.interface';
 import styles from './styles.module.scss';
 import { SIGNUP_FIELDS } from './constants';
 
-function SignUp() {
+function SignIn() {
   const { register, errors, handleSubmit, watch } = useForm<User>();
   const [wrongCredentials, setWrongCredentials] = useState('');
   const password = useRef({});
@@ -73,4 +73,4 @@ function SignUp() {
   );
 }
 
-export default SignUp;
+export default SignIn;
