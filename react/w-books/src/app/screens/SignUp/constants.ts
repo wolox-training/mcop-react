@@ -1,7 +1,7 @@
 export const SIGNUP_FIELDS = {
-  firstName: 'first_name',
-  lastName: 'last_name',
+  firstName: 'firstName',
+  lastName: 'lastName',
   email: 'email',
   password: 'password',
-  passwordConfirmation: 'password_confirmation'
+  passwordConfirmation: 'passwordConfirmation'
 };
