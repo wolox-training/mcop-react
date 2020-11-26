@@ -1,31 +1,20 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React from 'react';
 
-// import { useRequest } from 'app/hooks/useRequest';
-import BookList from '~components/BookList';
-import NavBar from '~components/NavBar';
-// import { getBooks } from '~services/booksService';
+import { getBooks } from '~services/booksService';
 
-import { BOOKS_URL } from '~constants/api';
+import { useRequest } from '../../hooks/useRequest';
+import BookList from '../../components/BookList';
+import NavBar from '../../components/NavBar';
 
 import styles from './styles.module.scss';
 
 function Home() {
-  const [books, setBooks] = useState();
-  useEffect(() => {
-    const headers = {
-      'access-token': localStorage.getItem('access-token'),
-      uid: localStorage.getItem('uid'),
-      client: localStorage.getItem('client')
-    };
-    axios.get(BOOKS_URL, { params: headers }).then(r => {
-      setBooks(r.data.page);
-    });
-  }, []);
+  const [state]: any = useRequest({ request: getBooks, payload: {} }, []);
+
   return (
     <div className={styles.homeContainer}>
       <NavBar />
-      {books !== null && <BookList books={books} />}
+      {state && <BookList books={state.data.page} />}
     </div>
   );
 }
