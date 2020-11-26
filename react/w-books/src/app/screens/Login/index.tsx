@@ -18,7 +18,6 @@ import { SIGNUP_FIELDS } from './constants';
 
 function SignIn() {
   const history = useHistory();
-  const [loggedUser, setLoggedUser] = useState('');
   const { register, errors, handleSubmit, watch } = useForm<User>();
   const [wrongCredentials, setWrongCredentials] = useState('');
   const password = useRef({});
@@ -26,7 +25,6 @@ function SignIn() {
 
   const [state, loading, error, sendRequest] = useLazyRequest({ request: login });
   const onSubmit = (user: User): void => {
-    setLoggedUser(user.email);
     sendRequest(user);
   };
 
@@ -37,7 +35,7 @@ function SignIn() {
       saveInLocalStorage(state);
       history.replace('/home');
     }
-  }, [state, error, history, loggedUser]);
+  }, [state, error, history]);
 
   return (
     <div className="row center middle">
