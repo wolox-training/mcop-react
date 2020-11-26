@@ -1,0 +1,20 @@
+@import '../../../scss/base/colors';
+
+.navbar-container {
+  background-color: $white;
+  border-top: 6px solid $blue;
+  box-shadow: -7px 5px 12px -4px rgba($black, 0.75);
+  height: 70px;
+}
+
+.nabvar-logout {
+  color: $font;
+  cursor: pointer;
+  font-size: 20px;
+  height: 100%;
+}
+
+.logo {
+  height: 70px;
+  width: 200px;
+}

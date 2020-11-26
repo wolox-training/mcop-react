@@ -1,7 +1,7 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import i18next from 'i18next';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 import { validations } from '~utils/validations';
 import InputField from '~components/InputField';
@@ -18,12 +18,19 @@ function SignUp() {
   const { register, errors, handleSubmit, watch } = useForm<User>();
   const password = useRef({});
   password.current = watch('password', '');
+  const history = useHistory();
 
-  const [, , error, sendRequest] = useLazyRequest({ request: signUp });
+  const [state, loading, error, sendRequest] = useLazyRequest({ request: signUp });
   const onSubmit = (user: User): void => {
     user.locale = 'en';
     sendRequest(user);
   };
+
+  useEffect(() => {
+    if (state) {
+      history.replace('/');
+    }
+  }, [history, state]);
 
   return (
     <div className="row center middle">
@@ -84,7 +91,7 @@ function SignUp() {
             })}
             error={errors.password_confirmation}
           />
-          <button type="submit" className={styles.signupGreenButton}>
+          <button type="submit" className={styles.signupGreenButton} disabled={loading}>
             {i18next.t('SignUp:signup')}
           </button>
         </form>

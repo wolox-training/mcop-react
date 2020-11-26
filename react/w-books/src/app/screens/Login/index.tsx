@@ -1,12 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react';
 import i18next from 'i18next';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 import { validations } from '~utils/validations';
 import InputField from '~components/InputField';
 import { login } from '~services/userService';
 import PATHS from '~constants/paths';
+import { saveInLocalStorage } from '~utils/session';
 
 import logo from '../../assets/logo_full_color.svg';
 import { useLazyRequest } from '../../hooks/useRequest';
@@ -16,12 +17,13 @@ import styles from './styles.module.scss';
 import { SIGNUP_FIELDS } from './constants';
 
 function SignIn() {
+  const history = useHistory();
   const { register, errors, handleSubmit, watch } = useForm<User>();
   const [wrongCredentials, setWrongCredentials] = useState('');
   const password = useRef({});
   password.current = watch('password', '');
 
-  const [state, , error, sendRequest] = useLazyRequest({ request: login });
+  const [state, loading, error, sendRequest] = useLazyRequest({ request: login });
   const onSubmit = (user: User): void => {
     sendRequest(user);
   };
@@ -29,8 +31,11 @@ function SignIn() {
   useEffect(() => {
     if (error) {
       setWrongCredentials(i18next.t('Login:wrongCredentials'));
+    } else if (state) {
+      saveInLocalStorage(state);
+      history.replace('/home');
     }
-  }, [state, error]);
+  }, [state, error, history]);
 
   return (
     <div className="row center middle">
@@ -60,7 +65,7 @@ function SignIn() {
             })}
             error={errors.password}
           />
-          <button type="submit" className={styles.signupGreenButton}>
+          <button type="submit" className={styles.signupGreenButton} disabled={loading}>
             {i18next.t('Login:login')}
           </button>
         </form>
