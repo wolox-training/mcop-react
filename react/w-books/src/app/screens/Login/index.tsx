@@ -67,7 +67,7 @@ function SignIn() {
             })}
             error={errors.password}
           />
-          <button type="submit" className={styles.signupGreenButton}>
+          <button type="submit" className={styles.signupGreenButton} disabled={loading}>
             {i18next.t('Login:login')}
           </button>
         </form>

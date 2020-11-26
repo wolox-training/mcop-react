@@ -12,6 +12,7 @@ function AppRouter() {
       <Switch>
         <Route path={PATHS.signUp} component={SignUp} exact />
         <Route path={PATHS.root} component={Login} exact />
+        <Route path={PATHS.home} component={Home} exact />
       </Switch>
     </Router>
   );
