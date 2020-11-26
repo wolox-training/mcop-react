@@ -119,5 +119,4 @@ export const useRequest = <P, D, E>(
     dependencies
   );
   return [state, loading, error, sendRequest];
-  // eslint-disable-next-line
 };

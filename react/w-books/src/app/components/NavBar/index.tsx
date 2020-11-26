@@ -12,9 +12,8 @@ function NavBar() {
     window.location.href = '/';
   };
   return (
-    <div className={styles.navbarContainer}>
+    <div className={`row middle space-around ${styles.navbarContainer}`}>
       <img src={logo} alt="Logo" className={styles.logo} />
-
       <button type="button" className={styles.nabvarLogout} onClick={handleLogout}>
         {i18next.t('Navbar:login')}
       </button>

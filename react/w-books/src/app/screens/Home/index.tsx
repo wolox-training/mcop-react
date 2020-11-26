@@ -1,27 +1,20 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 import { getBooks } from '~services/booksService';
 
+import { useRequest } from '../../hooks/useRequest';
 import BookList from '../../components/BookList';
 import NavBar from '../../components/NavBar';
 
 import styles from './styles.module.scss';
 
 function Home() {
-  const [books, setBooks] = useState();
-  const fetchBooks = async () => {
-    const resp = await getBooks();
-    setBooks(resp);
-  };
-
-  useEffect(() => {
-    fetchBooks();
-  }, []);
+  const [state]: any = useRequest({ request: getBooks, payload: {} }, []);
 
   return (
     <div className={styles.homeContainer}>
       <NavBar />
-      {books && <BookList books={books} />}
+      {state && <BookList books={state.data.page} />}
     </div>
   );
 }

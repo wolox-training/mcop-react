@@ -9,10 +9,8 @@ if (accessToken && client && uid) {
   api.setHeader('client', client);
   api.setHeader('uid', uid);
 }
-export const getBooks = async () => {
-  const data: any = await (await api.get('/books')).data;
-  return data.page;
-};
+
+export const getBooks = () => api.get('/books');
 
 export const getBookById = async (id: string) => {
   const data: any = await (await api.get(`/books/${id}`)).data;

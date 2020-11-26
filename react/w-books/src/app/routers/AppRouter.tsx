@@ -10,15 +10,17 @@ import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
 
 const isAuthenticated = localStorage.getItem('access-token');
-export const AppRouter = () => (
-  <Router>
-    <div>
+function AppRouter() {
+  return (
+    <Router>
       <Switch>
         <PublicRoute component={SignUp} path="/sign_up" isSignedIn={!!isAuthenticated} />
         <PrivateRoute component={Home} path="/home" isSignedIn={!!isAuthenticated} />
         <PrivateRoute component={BookDetail} path="/books/:id" isSignedIn={!!isAuthenticated} />
         <PublicRoute component={Login} exact path="/" isSignedIn={!!isAuthenticated} />
       </Switch>
-    </div>
-  </Router>
-);
+    </Router>
+  );
+}
+
+export default AppRouter;

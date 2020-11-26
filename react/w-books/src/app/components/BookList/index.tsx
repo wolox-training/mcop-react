@@ -5,23 +5,22 @@ import { Book } from '../../../interfaces/book.interface';
 
 import styles from './styles.module.scss';
 
-interface BookList {
+interface Props {
   books: [Book] | undefined;
 }
 
-function BookList(books: BookList) {
+function BookList({ books }: Props) {
   const history = useHistory();
-  const bookList = books.books;
 
   const handleBookDetail = (id: string) => {
     history.push(`/books/${id}`);
   };
   return (
     <div className={styles.container}>
-      {bookList &&
-        bookList.map((book: Book) => (
+      {books &&
+        books.map((book: Book) => (
           <div
-            className={`${styles.item}`}
+            className={styles.item}
             key={book.id}
             onClick={e => {
               e.preventDefault();
