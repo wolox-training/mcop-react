@@ -12,7 +12,4 @@ if (accessToken && client && uid) {
 
 export const getBooks = () => api.get('/books');
 
-export const getBookById = async (id: string) => {
-  const data: any = await (await api.get(`/books/${id}`)).data;
-  return data;
-};
+export const getBookById = (id: string) => api.get(`/books/${id}`);

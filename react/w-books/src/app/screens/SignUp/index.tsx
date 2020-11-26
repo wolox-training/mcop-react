@@ -91,7 +91,12 @@ function SignUp() {
             })}
             error={errors.password_confirmation}
           />
-          <button type="submit" className={styles.signupGreenButton} disabled={loading}>
+          <button
+            data-testid="signUpButton"
+            type="submit"
+            className={styles.signupGreenButton}
+            disabled={loading}
+          >
             {i18next.t('SignUp:signup')}
           </button>
         </form>

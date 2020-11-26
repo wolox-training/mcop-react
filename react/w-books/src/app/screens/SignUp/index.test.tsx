@@ -36,7 +36,7 @@ describe('tests in <SignUp />', () => {
 
   test('password is incorrect', async () => {
     const inputPassword = screen.getByTestId('password');
-    const inputConfirmPassword = screen.getByTestId('password_confirmation');
+    const inputConfirmPassword = screen.getByTestId('passwordConfirmation');
     const signUpButton = screen.getByTestId('signUpButton');
 
     fireEvent.change(inputPassword, { target: { value: '123' } });
@@ -48,11 +48,11 @@ describe('tests in <SignUp />', () => {
   });
 
   test('data entered incorrectly', async () => {
-    const inputName = screen.getByTestId('first_name');
-    const inputLastName = screen.getByTestId('last_name');
+    const inputName = screen.getByTestId('firstName');
+    const inputLastName = screen.getByTestId('lastName');
     const inputEmail = screen.getByTestId('email');
     const inputPassword = screen.getByTestId('password');
-    const inputConfirmPassword = screen.getByTestId('password_confirmation');
+    const inputConfirmPassword = screen.getByTestId('passwordConfirmation');
     const signUpButton = screen.getByTestId('signUpButton');
 
     fireEvent.change(inputName, { target: { value: 'Maxi' } });

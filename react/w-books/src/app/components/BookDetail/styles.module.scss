@@ -1,5 +1,7 @@
 @import '../../../scss/base/colors';
 
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
 .home-container {
   align-items: center;
   background-color: $white;
@@ -12,7 +14,7 @@
 
 .book-detail-container {
   align-items: center;
-  box-shadow: 7px 15px 18px -11px rgba(0, 0, 0, 0.75);
+  box-shadow: 7px 15px 18px -11px rgba($black, 0.75);
   height: 400px;
   display: flex;
   justify-content: space-evenly;
@@ -47,12 +49,18 @@
 }
 
 .book-information {
+  color: $font;
   display: flex;
+  font-family: Roboto;
+  font-size: 20px;
   padding: 5px;
 }
 
 .bold {
+  color: $black;
+  font-family: Roboto;
   font-weight: 700;
+  font-size: 20px;
   margin-right: 10px;
 }
 
@@ -81,4 +89,8 @@
   justify-content: space-evenly;
   padding: 10px;
   width: 98px;
+}
+
+.badge {
+  transform: translate(255px, -134px);
 }

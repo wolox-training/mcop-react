@@ -1,36 +1,20 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import i18next from 'i18next';
 
 import { getBookById } from '~services/booksService';
 
-import styles from './styles.module.scss';
+import { useRequest } from '../../hooks/useRequest';
+import badge from '../../assets/badge.png';
 
-const initialState = {
-  id: '',
-  author: '',
-  title: '',
-  imageUrl: '',
-  editor: '',
-  year: '',
-  genre: '',
-  currentRent: ''
-};
+import styles from './styles.module.scss';
 
 function BookDetail() {
   const history = useHistory();
-  const [book, setBook] = useState(initialState);
-
-  useEffect(() => {
-    async function fetchBook() {
-      const { pathname } = history.location;
-      const bookId = pathname.split('/')[pathname.split('/').length - 1];
-      const resp = await getBookById(bookId);
-      setBook(resp);
-    }
-
-    fetchBook();
-  }, [history.location]);
+  const { pathname } = history.location;
+  const bookId = pathname.split('/')[pathname.split('/').length - 1];
+  const [state]: any = useRequest({ request: getBookById, payload: bookId }, []);
+  const book = state ? state.data : false;
 
   return (
     <div className={styles.homeContainer}>
@@ -43,8 +27,9 @@ function BookDetail() {
         </Link>
       </div>
 
-      {book.id && (
+      {book && (
         <div className={styles.bookDetailContainer}>
+          <img className={styles.badge} src={badge} alt="Badge" />
           <img src={book.imageUrl} alt={book.title} className={styles.bookImage} />
           <div className={styles.descriptionContainer}>
             <div className={styles.bookTitle}>
