@@ -1,16 +1,24 @@
 @import '../../../scss/base/colors';
 
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
 .signup-input {
-  padding: 15px;
+  border-radius: 5px;
+  height: 32px;
+  margin-bottom: 20px;
+  width: 252px;
 }
 
 .signup-input-description {
-  font-weight: 700;
-  padding: 10px 0;
+  color: $black;
+  font-family: Roboto, sans-serif;
+  font-size: 16px;
+  padding: 5px 0;
   text-align: left;
+  width: 94%;
 }
 
 .signup-text-danger {
   color: $red;
-  padding: 10px;
+  font-size: 12px;
 }

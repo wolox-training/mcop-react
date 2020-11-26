@@ -33,75 +33,73 @@ function SignUp() {
   }, [history, state]);
 
   return (
-    <div className={styles.signupContainer}>
-      <img src={logo} alt="Logo" className={styles.signupLogo} />
-      {error && <span className={styles.signupRequestError}>{error.problem}</span>}
-      <form onSubmit={handleSubmit(onSubmit)} className={styles.signupForm}>
-        <InputField
-          type="text"
-          label={i18next.t('SignUp:firstName')}
-          name={SIGNUP_FIELDS.firstName}
-          inputRef={register({
-            required: { value: true, message: i18next.t('SignUp:nameRequired') }
-          })}
-          error={errors.first_name}
-        />
-        <InputField
-          type="text"
-          label={i18next.t('SignUp:lastName')}
-          name={SIGNUP_FIELDS.lastName}
-          inputRef={register({
-            required: { value: true, message: i18next.t('SignUp:lastNameRequired') }
-          })}
-          error={errors.last_name}
-        />
-        <InputField
-          type="text"
-          label={i18next.t('SignUp:email')}
-          name={SIGNUP_FIELDS.email}
-          inputRef={register({
-            required: { value: true, message: i18next.t('SignUp:emailRequired') },
-            pattern: {
-              value: validations.emailPattern,
-              message: i18next.t('SignUp:invalidEmail')
-            }
-          })}
-          error={errors.email}
-        />
-        <InputField
-          type="password"
-          label={i18next.t('SignUp:password')}
-          name={SIGNUP_FIELDS.password}
-          inputRef={register({
-            required: { value: true, message: i18next.t('SignUp:passwordRequired') }
-          })}
-          error={errors.password}
-        />
-        <InputField
-          type="password"
-          label={i18next.t('SignUp:passwordConfirmation')}
-          name={SIGNUP_FIELDS.passwordConfirmation}
-          inputRef={register({
-            required: {
-              value: true,
-              message: i18next.t('SignUp:passwordConfirmationRequired')
-            },
-            validate: value => value === password.current || `${i18next.t('SignUp:passwordDoesNotMatch')}`
-          })}
-          error={errors.password_confirmation}
-        />
-        <button
-          type="submit"
-          className={loading ? styles.signupGreenButtonLoading : styles.signupGreenButton}
-          disabled={loading}
-        >
-          {i18next.t('SignUp:signup')}
-        </button>
-      </form>
+    <div className="row center middle">
+      <div className={styles.signupContainer}>
+        <img src={logo} alt="Logo" className={styles.signupLogo} />
+        {error && <span className={styles.signupRequestError}>{error.problem}</span>}
+        <form onSubmit={handleSubmit(onSubmit)} className={styles.signupForm}>
+          <InputField
+            type="text"
+            label={i18next.t('SignUp:firstName')}
+            name={SIGNUP_FIELDS.firstName}
+            inputRef={register({
+              required: { value: true, message: i18next.t('SignUp:nameRequired') }
+            })}
+            error={errors.first_name}
+          />
+          <InputField
+            type="text"
+            label={i18next.t('SignUp:lastName')}
+            name={SIGNUP_FIELDS.lastName}
+            inputRef={register({
+              required: { value: true, message: i18next.t('SignUp:lastNameRequired') }
+            })}
+            error={errors.last_name}
+          />
+          <InputField
+            type="text"
+            label={i18next.t('SignUp:email')}
+            name={SIGNUP_FIELDS.email}
+            inputRef={register({
+              required: { value: true, message: i18next.t('SignUp:emailRequired') },
+              pattern: {
+                value: validations.emailPattern,
+                message: i18next.t('SignUp:invalidEmail')
+              }
+            })}
+            error={errors.email}
+          />
+          <InputField
+            type="password"
+            label={i18next.t('SignUp:password')}
+            name={SIGNUP_FIELDS.password}
+            inputRef={register({
+              required: { value: true, message: i18next.t('SignUp:passwordRequired') }
+            })}
+            error={errors.password}
+          />
+          <InputField
+            type="password"
+            label={i18next.t('SignUp:passwordConfirmation')}
+            name={SIGNUP_FIELDS.passwordConfirmation}
+            inputRef={register({
+              required: {
+                value: true,
+                message: i18next.t('SignUp:passwordConfirmationRequired')
+              },
+              validate: value => value === password.current || `${i18next.t('SignUp:passwordDoesNotMatch')}`
+            })}
+            error={errors.password_confirmation}
+          />
+          <button type="submit" className={styles.signupGreenButton} disabled={loading}>
+            {i18next.t('SignUp:signup')}
+          </button>
+        </form>
 
-      <Link to="/" className={styles.signupGreyButton}>
-        {i18next.t('SignUp:login')}
-      </Link>
+        <Link to="/" className={styles.signupGreyButton}>
+          {i18next.t('SignUp:login')}
+        </Link>
+      </div>
     </div>
   );
 }
