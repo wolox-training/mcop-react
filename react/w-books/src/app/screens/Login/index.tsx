@@ -23,7 +23,7 @@ function SignIn() {
   const password = useRef({});
   password.current = watch('password', '');
 
-  const [state, loading, error, sendRequest] = useLazyRequest({ request: login });
+  const [response, loading, error, sendRequest] = useLazyRequest({ request: login });
   const onSubmit = (user: User): void => {
     sendRequest(user);
   };
@@ -31,11 +31,11 @@ function SignIn() {
   useEffect(() => {
     if (error) {
       setWrongCredentials(i18next.t('Login:wrongCredentials'));
-    } else if (state) {
-      saveInLocalStorage(state);
+    } else if (response) {
+      saveInLocalStorage(response);
       history.replace('/home');
     }
-  }, [state, error, history]);
+  }, [response, error, history]);
 
   return (
     <div className="row center middle">
