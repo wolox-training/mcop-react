@@ -7,18 +7,17 @@ import Login from '../screens/Login';
 import SignUp from '../screens/SignUp';
 import BookDetail from '../components/BookDetail/index';
 
-import PrivateRoute from './PrivateRoute';
-import PublicRoute from './PublicRoute';
+import RouteItem from './RouteItem';
 
 function AppRouter() {
   const user = useSelector(state => state.user);
   return (
     <Router>
       <Switch>
-        <PublicRoute component={SignUp} path="/sign_up" isSignedIn={user !== null} />
-        <PrivateRoute component={Home} path="/home" isSignedIn={user !== null} />
-        <PrivateRoute component={BookDetail} path="/books/:id" isSignedIn={user !== null} />
-        <PublicRoute component={Login} exact path="/" isSignedIn={user !== null} />
+        <RouteItem component={SignUp} path="/sign_up" isLogged={user} />
+        <RouteItem component={Home} path="/home" isPrivate isLogged={user} />
+        <RouteItem component={BookDetail} path="/books/:id" isPrivate isLogged={user} />
+        <RouteItem component={Login} exact path="/" isLogged={user} />
       </Switch>
     </Router>
   );

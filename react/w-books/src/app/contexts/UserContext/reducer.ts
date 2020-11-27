@@ -1,5 +1,4 @@
 import { saveInLocalStorage } from '~utils/session';
-import { Nullable } from '~utils/types';
 
 export interface User {
   accessToken: string;
@@ -8,7 +7,10 @@ export interface User {
 }
 
 export interface UserState {
-  user: Nullable<User>;
+  user?: {
+    payload?: User;
+    logged: boolean;
+  };
 }
 
 enum ActionTypes {
@@ -17,7 +19,9 @@ enum ActionTypes {
 }
 
 export const INITIAL_STATE = {
-  user: null
+  user: {
+    logged: !!localStorage.getItem('access-token')
+  }
 };
 
 interface SetSession {
@@ -27,6 +31,7 @@ interface SetSession {
 
 interface ClearSession {
   type: ActionTypes.LOGOUT;
+  payload: any;
 }
 
 export type Action = SetSession | ClearSession;
@@ -39,11 +44,11 @@ export const actionCreators = {
       client: user.headers.client
     };
     saveInLocalStorage(userData);
-    return { type: ActionTypes.LOGIN, payload: userData };
+    return { type: ActionTypes.LOGIN, payload: { userData, logged: true } };
   },
   resetUser: (): ClearSession => {
     localStorage.clear();
-    return { type: ActionTypes.LOGOUT };
+    return { type: ActionTypes.LOGOUT, payload: { logged: false } };
   }
 };
 
@@ -53,7 +58,7 @@ export const authReducer = (state: UserState, action: Action): UserState => {
       return { ...state, user: action.payload };
     }
     case ActionTypes.LOGOUT: {
-      return { ...state, user: null };
+      return { ...state, user: undefined };
     }
     default: {
       return state;

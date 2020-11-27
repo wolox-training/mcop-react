@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import i18next from 'i18next';
 import { useForm } from 'react-hook-form';
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import { validations } from '~utils/validations';
 import InputField from '~components/InputField';
@@ -18,7 +18,6 @@ import styles from './styles.module.scss';
 import { SIGNUP_FIELDS } from './constants';
 
 function SignIn() {
-  const history = useHistory();
   const dispatch = useDispatch();
   const { register, errors, handleSubmit, watch } = useForm<User>();
   const [wrongCredentials, setWrongCredentials] = useState('');
@@ -29,7 +28,6 @@ function SignIn() {
     request: login,
     withPostSuccess: response => {
       dispatch(actionCreators.setUser(response));
-      history.push('/home');
     },
     withPostFailure: () => {
       setWrongCredentials(i18next.t('Login:wrongCredentials'));
