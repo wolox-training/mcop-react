@@ -1,12 +1,12 @@
 import React, { useEffect, useRef } from 'react';
 import i18next from 'i18next';
+/* istanbul ignore next */
 import { useForm } from 'react-hook-form';
 import { Link, useHistory } from 'react-router-dom';
 
-import { validations } from '~utils/validations';
-import InputField from '~components/InputField';
-import { signUp } from '~services/userService';
-
+import { validations } from '../../../utils/validations';
+import InputField from '../../components/InputField';
+import { signUp } from '../../../services/userService';
 import logo from '../../assets/logo_full_color.svg';
 import { useLazyRequest } from '../../hooks/useRequest';
 import { User } from '../../../interfaces/user.interface';
@@ -91,7 +91,12 @@ function SignUp() {
             })}
             error={errors.password_confirmation}
           />
-          <button type="submit" className={styles.signupGreenButton} disabled={loading}>
+          <button
+            data-testid="signUpButton"
+            type="submit"
+            className={styles.signupGreenButton}
+            disabled={loading}
+          >
             {i18next.t('SignUp:signup')}
           </button>
         </form>

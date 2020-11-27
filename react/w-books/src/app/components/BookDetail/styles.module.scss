@@ -1,0 +1,96 @@
+@import '../../../scss/base/colors';
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+.home-container {
+  align-items: center;
+  background-color: $white;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: center;
+  width: 100vw;
+}
+
+.book-detail-container {
+  align-items: center;
+  box-shadow: 7px 15px 18px -11px rgba($black, 0.75);
+  height: 400px;
+  display: flex;
+  justify-content: space-evenly;
+  text-align: center;
+  width: 80%;
+}
+
+.description-container {
+  height: 80%;
+  width: 70%;
+}
+
+.book-image {
+  height: 80%;
+}
+
+.book-title {
+  align-items: center;
+  border-bottom: 5px solid $green;
+  display: flex;
+  font-size: 30px;
+  font-weight: 700;
+  padding: 10px;
+  text-align: left;
+}
+
+.genre {
+  font-size: 24px;
+  color: $font;
+  font-weight: 400;
+  margin-left: 10px;
+}
+
+.book-information {
+  color: $font;
+  display: flex;
+  font-family: Roboto;
+  font-size: 20px;
+  padding: 5px;
+}
+
+.bold {
+  color: $black;
+  font-family: Roboto;
+  font-weight: 700;
+  font-size: 20px;
+  margin-right: 10px;
+}
+
+.back-button {
+  padding: 20px;
+  width: 80%;
+}
+
+.link-item {
+  font-size: 20px;
+  color: $font;
+}
+
+.chevron-left {
+  border: 2px solid $green;
+  border-radius: 50%;
+  color: $blue;
+  display: inline-block;
+  height: 20px;
+  text-align: center;
+  width: 20px;
+}
+
+.arrow {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 10px;
+  width: 98px;
+}
+
+.badge {
+  transform: translate(255px, -134px);
+}

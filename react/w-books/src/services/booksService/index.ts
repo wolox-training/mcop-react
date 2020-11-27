@@ -11,3 +11,5 @@ if (accessToken && client && uid) {
 }
 
 export const getBooks = () => api.get('/books');
+
+export const getBookById = (id: string) => api.get(`/books/${id}`);

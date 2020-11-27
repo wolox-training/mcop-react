@@ -17,8 +17,19 @@ function InputField({ type, label, name, inputRef, error }: Props): JSX.Element 
       <label htmlFor={name} className={styles.signupInputDescription}>
         {label}
       </label>
-      <input type={type} name={name} autoComplete="off" ref={inputRef} className={styles.signupInput} />
-      {error && <span className={styles.signupTextDanger}>{error.message}</span>}
+      <input
+        data-testid={name}
+        type={type}
+        name={name}
+        autoComplete="off"
+        ref={inputRef}
+        className={styles.signupInput}
+      />
+      {error && (
+        <span data-testid="error" className={styles.signupTextDanger}>
+          {error.message}
+        </span>
+      )}
     </>
   );
 }
