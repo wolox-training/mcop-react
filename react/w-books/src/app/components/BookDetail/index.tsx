@@ -19,7 +19,7 @@ function BookDetail() {
   return (
     <div className={styles.homeContainer}>
       <div className={styles.backButton}>
-        <Link to="/home">
+        <Link to="/home" className={styles.linkItem}>
           <div className={styles.arrow}>
             <span className={styles.chevronLeft}>&lt;</span>
             <div>{i18next.t('BookDetail:goBack')}</div>

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import i18next from 'i18next';
 import { useForm } from 'react-hook-form';
 import { Link, useHistory } from 'react-router-dom';
@@ -7,42 +7,41 @@ import { validations } from '~utils/validations';
 import InputField from '~components/InputField';
 import { login } from '~services/userService';
 import PATHS from '~constants/paths';
-import { saveInLocalStorage } from '~utils/session';
 
+import { useDispatch } from '../../contexts/UserContext';
 import logo from '../../assets/logo_full_color.svg';
 import { useLazyRequest } from '../../hooks/useRequest';
 import { User } from '../../../interfaces/user.interface';
+import { actionCreators } from '../../contexts/UserContext/reducer';
 
 import styles from './styles.module.scss';
 import { SIGNUP_FIELDS } from './constants';
 
 function SignIn() {
   const history = useHistory();
+  const dispatch = useDispatch();
   const { register, errors, handleSubmit, watch } = useForm<User>();
   const [wrongCredentials, setWrongCredentials] = useState('');
   const password = useRef({});
   password.current = watch('password', '');
 
-  const [response, loading, error, sendRequest] = useLazyRequest({ request: login });
-  const onSubmit = (user: User): void => {
-    sendRequest(user);
-  };
-
-  useEffect(() => {
-    if (error) {
+  const [, loading, , sendRequest] = useLazyRequest({
+    request: login,
+    withPostSuccess: response => {
+      dispatch(actionCreators.setUser(response));
+      history.push('/home');
+    },
+    withPostFailure: () => {
       setWrongCredentials(i18next.t('Login:wrongCredentials'));
-    } else if (response) {
-      saveInLocalStorage(response);
-      window.location.href = '/home';
     }
-  }, [response, error, history]);
+  });
 
   return (
     <div className="row center middle">
       <div className={styles.signupContainer}>
         <img src={logo} alt="Logo" className={styles.signupLogo} />
         {wrongCredentials && <span className={styles.signupRequestError}>{wrongCredentials}</span>}
-        <form onSubmit={handleSubmit(onSubmit)} className={styles.signupForm}>
+        <form onSubmit={handleSubmit(sendRequest)} className={styles.signupForm}>
           <InputField
             type="text"
             label={i18next.t('Login:email')}
