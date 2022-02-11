@@ -88,7 +88,7 @@
     "eslint-plugin-react-native": "^3.5.0",
     "husky": "^2.7.0",
     "minimist": "^1.2.0",
-    "node-sass": "^4.14.1",
+    "node-sass": "^7.0.0",
     "postcss-html": "^0.36.0",
     "postcss-syntax": "^0.36.2",
     "prettier": "^1.17.1",
